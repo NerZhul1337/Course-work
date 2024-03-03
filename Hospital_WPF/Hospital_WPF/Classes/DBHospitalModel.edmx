@@ -1,0 +1,468 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище DBHospitalModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Access_Level_Table">
+          <Key>
+            <PropertyRef Name="id_access_level" />
+          </Key>
+          <Property Name="id_access_level" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_of_access_level" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Diagnoses_Table">
+          <Key>
+            <PropertyRef Name="id_diagnose" />
+          </Key>
+          <Property Name="id_diagnose" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_diagnose_rus" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name_diagnose_lat" Type="nvarchar" MaxLength="50" />
+          <Property Name="Type_diagnose" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nature_of_the_disease" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Stage_diagnose" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Doctors_Table">
+          <Key>
+            <PropertyRef Name="id_doctor" />
+          </Key>
+          <Property Name="id_doctor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_doctor" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname_doctor" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronymic_doctor" Type="nvarchar" MaxLength="50" />
+          <Property Name="Specialization" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Experience" Type="int" Nullable="false" />
+          <Property Name="User_login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="User_pass" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_access_level" Type="int" Nullable="false" />
+          <Property Name="EmployeeImage" Type="image" />
+        </EntityType>
+        <EntityType Name="Gender_Table">
+          <Key>
+            <PropertyRef Name="id_gender" />
+          </Key>
+          <Property Name="id_gender" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_of_gender" Type="nvarchar" MaxLength="12" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Patients_Medical_Records_Table">
+          <Key>
+            <PropertyRef Name="id_medical_records" />
+          </Key>
+          <Property Name="id_medical_records" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_patient" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname_patient" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronymic_patient" Type="nvarchar" MaxLength="50" />
+          <Property Name="Age_patient" Type="int" Nullable="false" />
+          <Property Name="Birth_date_patient" Type="date" Nullable="false" />
+          <Property Name="id_gender" Type="int" Nullable="false" />
+          <Property Name="Insurance_policy_number_patient" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="Addres_patient" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reception_Table">
+          <Key>
+            <PropertyRef Name="id_reception" />
+          </Key>
+          <Property Name="id_reception" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_doctor_reception" Type="int" Nullable="false" />
+          <Property Name="id_medical_records_reception" Type="int" Nullable="false" />
+          <Property Name="Date_of_reception" Type="date" Nullable="false" />
+          <Property Name="Complaints" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Appointment" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_diagnose_reception" Type="int" Nullable="false" />
+          <Property Name="addition_to_diagnose" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Doctors_Table_Access_Level_Table">
+          <End Role="Access_Level_Table" Type="Self.Access_Level_Table" Multiplicity="1" />
+          <End Role="Doctors_Table" Type="Self.Doctors_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Access_Level_Table">
+              <PropertyRef Name="id_access_level" />
+            </Principal>
+            <Dependent Role="Doctors_Table">
+              <PropertyRef Name="id_access_level" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patients_Medical_Records_Table_Gender_Table">
+          <End Role="Gender_Table" Type="Self.Gender_Table" Multiplicity="1" />
+          <End Role="Patients_Medical_Records_Table" Type="Self.Patients_Medical_Records_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender_Table">
+              <PropertyRef Name="id_gender" />
+            </Principal>
+            <Dependent Role="Patients_Medical_Records_Table">
+              <PropertyRef Name="id_gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reception_Table_Diagnoses_Table">
+          <End Role="Diagnoses_Table" Type="Self.Diagnoses_Table" Multiplicity="1" />
+          <End Role="Reception_Table" Type="Self.Reception_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diagnoses_Table">
+              <PropertyRef Name="id_diagnose" />
+            </Principal>
+            <Dependent Role="Reception_Table">
+              <PropertyRef Name="id_diagnose_reception" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reception_Table_Doctors_Table">
+          <End Role="Doctors_Table" Type="Self.Doctors_Table" Multiplicity="1" />
+          <End Role="Reception_Table" Type="Self.Reception_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctors_Table">
+              <PropertyRef Name="id_doctor" />
+            </Principal>
+            <Dependent Role="Reception_Table">
+              <PropertyRef Name="id_doctor_reception" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reception_Table_Patients_Medical_Records_Table1">
+          <End Role="Patients_Medical_Records_Table" Type="Self.Patients_Medical_Records_Table" Multiplicity="1" />
+          <End Role="Reception_Table" Type="Self.Reception_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patients_Medical_Records_Table">
+              <PropertyRef Name="id_medical_records" />
+            </Principal>
+            <Dependent Role="Reception_Table">
+              <PropertyRef Name="id_medical_records_reception" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище DBHospitalModelContainer">
+          <EntitySet Name="Access_Level_Table" EntityType="Self.Access_Level_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Diagnoses_Table" EntityType="Self.Diagnoses_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Doctors_Table" EntityType="Self.Doctors_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender_Table" EntityType="Self.Gender_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Patients_Medical_Records_Table" EntityType="Self.Patients_Medical_Records_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reception_Table" EntityType="Self.Reception_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Doctors_Table_Access_Level_Table" Association="Self.FK_Doctors_Table_Access_Level_Table">
+            <End Role="Access_Level_Table" EntitySet="Access_Level_Table" />
+            <End Role="Doctors_Table" EntitySet="Doctors_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patients_Medical_Records_Table_Gender_Table" Association="Self.FK_Patients_Medical_Records_Table_Gender_Table">
+            <End Role="Gender_Table" EntitySet="Gender_Table" />
+            <End Role="Patients_Medical_Records_Table" EntitySet="Patients_Medical_Records_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reception_Table_Diagnoses_Table" Association="Self.FK_Reception_Table_Diagnoses_Table">
+            <End Role="Diagnoses_Table" EntitySet="Diagnoses_Table" />
+            <End Role="Reception_Table" EntitySet="Reception_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reception_Table_Doctors_Table" Association="Self.FK_Reception_Table_Doctors_Table">
+            <End Role="Doctors_Table" EntitySet="Doctors_Table" />
+            <End Role="Reception_Table" EntitySet="Reception_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reception_Table_Patients_Medical_Records_Table1" Association="Self.FK_Reception_Table_Patients_Medical_Records_Table1">
+            <End Role="Patients_Medical_Records_Table" EntitySet="Patients_Medical_Records_Table" />
+            <End Role="Reception_Table" EntitySet="Reception_Table" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBHospitalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Access_Level_Table">
+          <Key>
+            <PropertyRef Name="id_access_level" />
+          </Key>
+          <Property Name="id_access_level" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_of_access_level" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Doctors_Table" Relationship="Self.FK_Doctors_Table_Access_Level_Table" FromRole="Access_Level_Table" ToRole="Doctors_Table" />
+        </EntityType>
+        <EntityType Name="Diagnoses_Table">
+          <Key>
+            <PropertyRef Name="id_diagnose" />
+          </Key>
+          <Property Name="id_diagnose" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_diagnose_rus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name_diagnose_lat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type_diagnose" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nature_of_the_disease" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Stage_diagnose" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Reception_Table" Relationship="Self.FK_Reception_Table_Diagnoses_Table" FromRole="Diagnoses_Table" ToRole="Reception_Table" />
+        </EntityType>
+        <EntityType Name="Doctors_Table">
+          <Key>
+            <PropertyRef Name="id_doctor" />
+          </Key>
+          <Property Name="id_doctor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_doctor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname_doctor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronymic_doctor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Specialization" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Experience" Type="Int32" Nullable="false" />
+          <Property Name="User_login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="User_pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_access_level" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Access_Level_Table" Relationship="Self.FK_Doctors_Table_Access_Level_Table" FromRole="Doctors_Table" ToRole="Access_Level_Table" />
+          <NavigationProperty Name="Reception_Table" Relationship="Self.FK_Reception_Table_Doctors_Table" FromRole="Doctors_Table" ToRole="Reception_Table" />
+        </EntityType>
+        <EntityType Name="Gender_Table">
+          <Key>
+            <PropertyRef Name="id_gender" />
+          </Key>
+          <Property Name="id_gender" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_of_gender" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Patients_Medical_Records_Table" Relationship="Self.FK_Patients_Medical_Records_Table_Gender_Table" FromRole="Gender_Table" ToRole="Patients_Medical_Records_Table" />
+        </EntityType>
+        <EntityType Name="Patients_Medical_Records_Table">
+          <Key>
+            <PropertyRef Name="id_medical_records" />
+          </Key>
+          <Property Name="id_medical_records" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_patient" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname_patient" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronymic_patient" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Age_patient" Type="Int32" Nullable="false" />
+          <Property Name="Birth_date_patient" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="id_gender" Type="Int32" Nullable="false" />
+          <Property Name="Insurance_policy_number_patient" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Addres_patient" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Gender_Table" Relationship="Self.FK_Patients_Medical_Records_Table_Gender_Table" FromRole="Patients_Medical_Records_Table" ToRole="Gender_Table" />
+          <NavigationProperty Name="Reception_Table" Relationship="Self.FK_Reception_Table_Patients_Medical_Records_Table1" FromRole="Patients_Medical_Records_Table" ToRole="Reception_Table" />
+        </EntityType>
+        <EntityType Name="Reception_Table">
+          <Key>
+            <PropertyRef Name="id_reception" />
+          </Key>
+          <Property Name="id_reception" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_doctor_reception" Type="Int32" Nullable="false" />
+          <Property Name="id_medical_records_reception" Type="Int32" Nullable="false" />
+          <Property Name="Date_of_reception" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Complaints" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Appointment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_diagnose_reception" Type="Int32" Nullable="false" />
+          <Property Name="addition_to_diagnose" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Diagnoses_Table" Relationship="Self.FK_Reception_Table_Diagnoses_Table" FromRole="Reception_Table" ToRole="Diagnoses_Table" />
+          <NavigationProperty Name="Doctors_Table" Relationship="Self.FK_Reception_Table_Doctors_Table" FromRole="Reception_Table" ToRole="Doctors_Table" />
+          <NavigationProperty Name="Patients_Medical_Records_Table" Relationship="Self.FK_Reception_Table_Patients_Medical_Records_Table1" FromRole="Reception_Table" ToRole="Patients_Medical_Records_Table" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Doctors_Table_Access_Level_Table">
+          <End Role="Access_Level_Table" Type="Self.Access_Level_Table" Multiplicity="1" />
+          <End Role="Doctors_Table" Type="Self.Doctors_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Access_Level_Table">
+              <PropertyRef Name="id_access_level" />
+            </Principal>
+            <Dependent Role="Doctors_Table">
+              <PropertyRef Name="id_access_level" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reception_Table_Diagnoses_Table">
+          <End Role="Diagnoses_Table" Type="Self.Diagnoses_Table" Multiplicity="1" />
+          <End Role="Reception_Table" Type="Self.Reception_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diagnoses_Table">
+              <PropertyRef Name="id_diagnose" />
+            </Principal>
+            <Dependent Role="Reception_Table">
+              <PropertyRef Name="id_diagnose_reception" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reception_Table_Doctors_Table">
+          <End Role="Doctors_Table" Type="Self.Doctors_Table" Multiplicity="1" />
+          <End Role="Reception_Table" Type="Self.Reception_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctors_Table">
+              <PropertyRef Name="id_doctor" />
+            </Principal>
+            <Dependent Role="Reception_Table">
+              <PropertyRef Name="id_doctor_reception" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patients_Medical_Records_Table_Gender_Table">
+          <End Role="Gender_Table" Type="Self.Gender_Table" Multiplicity="1" />
+          <End Role="Patients_Medical_Records_Table" Type="Self.Patients_Medical_Records_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender_Table">
+              <PropertyRef Name="id_gender" />
+            </Principal>
+            <Dependent Role="Patients_Medical_Records_Table">
+              <PropertyRef Name="id_gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reception_Table_Patients_Medical_Records_Table1">
+          <End Role="Patients_Medical_Records_Table" Type="Self.Patients_Medical_Records_Table" Multiplicity="1" />
+          <End Role="Reception_Table" Type="Self.Reception_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patients_Medical_Records_Table">
+              <PropertyRef Name="id_medical_records" />
+            </Principal>
+            <Dependent Role="Reception_Table">
+              <PropertyRef Name="id_medical_records_reception" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBHospitalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Access_Level_Table" EntityType="Self.Access_Level_Table" />
+          <EntitySet Name="Diagnoses_Table" EntityType="Self.Diagnoses_Table" />
+          <EntitySet Name="Doctors_Table" EntityType="Self.Doctors_Table" />
+          <EntitySet Name="Gender_Table" EntityType="Self.Gender_Table" />
+          <EntitySet Name="Patients_Medical_Records_Table" EntityType="Self.Patients_Medical_Records_Table" />
+          <EntitySet Name="Reception_Table" EntityType="Self.Reception_Table" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_Doctors_Table_Access_Level_Table" Association="Self.FK_Doctors_Table_Access_Level_Table">
+            <End Role="Access_Level_Table" EntitySet="Access_Level_Table" />
+            <End Role="Doctors_Table" EntitySet="Doctors_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reception_Table_Diagnoses_Table" Association="Self.FK_Reception_Table_Diagnoses_Table">
+            <End Role="Diagnoses_Table" EntitySet="Diagnoses_Table" />
+            <End Role="Reception_Table" EntitySet="Reception_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reception_Table_Doctors_Table" Association="Self.FK_Reception_Table_Doctors_Table">
+            <End Role="Doctors_Table" EntitySet="Doctors_Table" />
+            <End Role="Reception_Table" EntitySet="Reception_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patients_Medical_Records_Table_Gender_Table" Association="Self.FK_Patients_Medical_Records_Table_Gender_Table">
+            <End Role="Gender_Table" EntitySet="Gender_Table" />
+            <End Role="Patients_Medical_Records_Table" EntitySet="Patients_Medical_Records_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reception_Table_Patients_Medical_Records_Table1" Association="Self.FK_Reception_Table_Patients_Medical_Records_Table1">
+            <End Role="Patients_Medical_Records_Table" EntitySet="Patients_Medical_Records_Table" />
+            <End Role="Reception_Table" EntitySet="Reception_Table" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище DBHospitalModelContainer" CdmEntityContainer="DBHospitalEntities">
+          <EntitySetMapping Name="Access_Level_Table">
+            <EntityTypeMapping TypeName="DBHospitalModel.Access_Level_Table">
+              <MappingFragment StoreEntitySet="Access_Level_Table">
+                <ScalarProperty Name="id_access_level" ColumnName="id_access_level" />
+                <ScalarProperty Name="Name_of_access_level" ColumnName="Name_of_access_level" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Diagnoses_Table">
+            <EntityTypeMapping TypeName="DBHospitalModel.Diagnoses_Table">
+              <MappingFragment StoreEntitySet="Diagnoses_Table">
+                <ScalarProperty Name="id_diagnose" ColumnName="id_diagnose" />
+                <ScalarProperty Name="Name_diagnose_rus" ColumnName="Name_diagnose_rus" />
+                <ScalarProperty Name="Name_diagnose_lat" ColumnName="Name_diagnose_lat" />
+                <ScalarProperty Name="Type_diagnose" ColumnName="Type_diagnose" />
+                <ScalarProperty Name="Nature_of_the_disease" ColumnName="Nature_of_the_disease" />
+                <ScalarProperty Name="Stage_diagnose" ColumnName="Stage_diagnose" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doctors_Table">
+            <EntityTypeMapping TypeName="DBHospitalModel.Doctors_Table">
+              <MappingFragment StoreEntitySet="Doctors_Table">
+                <ScalarProperty Name="id_doctor" ColumnName="id_doctor" />
+                <ScalarProperty Name="Name_doctor" ColumnName="Name_doctor" />
+                <ScalarProperty Name="Surname_doctor" ColumnName="Surname_doctor" />
+                <ScalarProperty Name="Patronymic_doctor" ColumnName="Patronymic_doctor" />
+                <ScalarProperty Name="Specialization" ColumnName="Specialization" />
+                <ScalarProperty Name="Experience" ColumnName="Experience" />
+                <ScalarProperty Name="User_login" ColumnName="User_login" />
+                <ScalarProperty Name="User_pass" ColumnName="User_pass" />
+                <ScalarProperty Name="id_access_level" ColumnName="id_access_level" />
+                <ScalarProperty Name="EmployeeImage" ColumnName="EmployeeImage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gender_Table">
+            <EntityTypeMapping TypeName="DBHospitalModel.Gender_Table">
+              <MappingFragment StoreEntitySet="Gender_Table">
+                <ScalarProperty Name="id_gender" ColumnName="id_gender" />
+                <ScalarProperty Name="Name_of_gender" ColumnName="Name_of_gender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patients_Medical_Records_Table">
+            <EntityTypeMapping TypeName="DBHospitalModel.Patients_Medical_Records_Table">
+              <MappingFragment StoreEntitySet="Patients_Medical_Records_Table">
+                <ScalarProperty Name="id_medical_records" ColumnName="id_medical_records" />
+                <ScalarProperty Name="Name_patient" ColumnName="Name_patient" />
+                <ScalarProperty Name="Surname_patient" ColumnName="Surname_patient" />
+                <ScalarProperty Name="Patronymic_patient" ColumnName="Patronymic_patient" />
+                <ScalarProperty Name="Age_patient" ColumnName="Age_patient" />
+                <ScalarProperty Name="Birth_date_patient" ColumnName="Birth_date_patient" />
+                <ScalarProperty Name="id_gender" ColumnName="id_gender" />
+                <ScalarProperty Name="Insurance_policy_number_patient" ColumnName="Insurance_policy_number_patient" />
+                <ScalarProperty Name="Addres_patient" ColumnName="Addres_patient" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reception_Table">
+            <EntityTypeMapping TypeName="DBHospitalModel.Reception_Table">
+              <MappingFragment StoreEntitySet="Reception_Table">
+                <ScalarProperty Name="id_reception" ColumnName="id_reception" />
+                <ScalarProperty Name="id_doctor_reception" ColumnName="id_doctor_reception" />
+                <ScalarProperty Name="id_medical_records_reception" ColumnName="id_medical_records_reception" />
+                <ScalarProperty Name="Date_of_reception" ColumnName="Date_of_reception" />
+                <ScalarProperty Name="Complaints" ColumnName="Complaints" />
+                <ScalarProperty Name="Appointment" ColumnName="Appointment" />
+                <ScalarProperty Name="id_diagnose_reception" ColumnName="id_diagnose_reception" />
+                <ScalarProperty Name="addition_to_diagnose" ColumnName="addition_to_diagnose" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DBHospitalModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

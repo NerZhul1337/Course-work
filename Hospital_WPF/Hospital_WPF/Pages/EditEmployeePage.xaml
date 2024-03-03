@@ -1,0 +1,156 @@
+﻿<Page x:Class="Hospital_WPF.Pages.EditEmployeePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Hospital_WPF.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="EditEmployeePage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="0.5*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0"
+                    Style="{StaticResource StackPanelStyle}">
+            <TextBlock Text="Окно изменения данных"
+                       Margin="5,5,5,5"
+                       FontSize="26"
+                       Width="300"
+                       Height="30"
+                       
+                       Style="{StaticResource TextBlockStyle}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Vertical"
+                    Style="{StaticResource StackPanelStyle}">
+            <TextBlock Text="Имя сотрудника: "
+                       Margin="-105,25,5,5"
+                       FontSize="20"
+                       Width="350" Height="30"
+                       Style="{StaticResource TextBlockStyle}"/>
+            <TextBox Name="TxtBoxChangedNameEmp"
+                     FontSize="20"
+                     Width="350"
+                     Height="30"
+                     Margin="515,-35,5,5"
+                     Style="{StaticResource TextBoxStyle}"
+                     Text="{Binding Name_doctor}"/>
+            <TextBlock Text="Фамилия сотрудника: "
+                       FontSize="20"
+                       Width="350" Height="30"
+                       Style="{StaticResource TextBlockStyle}"/>
+            <TextBox Name="TxtBoxChangedSurnameEmp"
+                     FontSize="20"
+                     Width="350"
+                     Height="30"
+                     Margin="515,-35,5,5"
+                     Style="{StaticResource TextBoxStyle}"
+                     Text="{Binding Surname_doctor}"/>
+            <TextBlock Text="Специализация сотрудника: "
+                       FontSize="20"
+                       Width="350" Height="30"
+                       Style="{StaticResource TextBlockStyle}"/>
+            <TextBox Name="TxtBoxChangedSpecializationEmp"
+                     FontSize="20"
+                     Width="350"
+                     Height="30"
+                     Margin="515,-35,5,5"
+                     Style="{StaticResource TextBoxStyle}"
+                     Text="{Binding Specialization}"/>
+            <TextBlock Text="Логин сотрудника: "
+                       FontSize="20"
+                       Width="350" Height="30"
+                       Style="{StaticResource TextBlockStyle}"/>
+            <TextBox Name="TxtBoxChangedLoginEmp"
+                     FontSize="20"
+                     Width="350"
+                     Height="30"
+                     Margin="515,-35,5,5"
+                     Style="{StaticResource TextBoxStyle}"
+                     Text="{Binding User_login}"/>
+            <TextBlock Text="Пароль сотрудника: "
+                       FontSize="20"
+                       Width="350" Height="30"
+                      Style="{StaticResource TextBlockStyle}"/>
+            <PasswordBox Name="PassBoxChangedPasswordEmpFirstCheck"
+                         FontSize="20"
+                     Width="350"
+                     Height="30"
+                     Margin="515,-35,5,5"
+                     Style="{StaticResource PassBoxStyle}"
+                     PasswordChar="*"
+                     Tag="{Binding User_pass}"/>
+            <TextBlock Text="Повтор пароля: "
+                       FontSize="20"
+                       Width="350" Height="30"
+                       Style="{StaticResource TextBlockStyle}"/>
+            <PasswordBox Name="PassBoxChangedPasswordEmpSecondCheck"
+                         FontSize="20"
+                     Width="350"
+                     Height="30"
+                     Margin="515,-35,5,5"
+                         Style="{StaticResource PassBoxStyle}"
+                         PasswordChar="*"
+                         Tag="{Binding User_pass}"/>
+            <TextBlock Text="Уровень доступа сотрудника: "
+                       FontSize="20"
+                       Width="350" Height="30"
+                       Style="{StaticResource TextBlockStyle}"/>
+            <ComboBox Name="CmbAccessLevelEmp" Text="Уровень доступа: "
+                      IsEditable="True" IsReadOnly="True"
+                      FontSize="20"
+                      Width="350"
+                      Height="30"
+                      Margin="515,-35,5,5"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      Style="{StaticResource CmbStyle}"
+                      SelectedValue="{Binding id_access_level}"/>
+            
+            <Image HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Stretch="Uniform"
+                   Width="200"
+                   Height="200"
+                   Margin="-720,-305,5,5"
+                   Name="ImageEmployeeElement">
+                <Image.Source>
+                    <Binding Path="EmployeeImage">
+                        <Binding.TargetNullValue>
+                            <ImageSource>\Resources\DoctorIcon.jpg</ImageSource>
+                        </Binding.TargetNullValue>
+                    </Binding>
+                </Image.Source>
+            </Image>
+            <TextBlock Style="{StaticResource TextBlockStyle}"
+                       Text="Фото сотрудника"
+                       Margin="-700,-65,5,5"
+                       FontSize="20"
+                       Width="180" Height="30"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal"
+                    Style="{StaticResource StackPanelStyle}">
+            <Button Name="SaveChangesInDoctorsTableBtn"
+                    Click="SaveChangesInDoctorsTableBtn_Click"
+                    Content="Сохранить изменения"
+                    Margin="270,-15,5,5"
+                    Width="250"
+                    Height="30"
+                    FontSize="20"
+                    Style="{StaticResource BtnStyle}"/>
+            <Button Name="GoBackBtn" Click="GoBackBtn_Click"
+                    Content="Вернуться назад"
+                    Margin="5,-15,5,5"
+                    Width="250"
+                    Height="30"
+                    FontSize="20"
+                    Style="{StaticResource BtnStyle}"/>
+        </StackPanel>
+
+    </Grid>
+</Page>

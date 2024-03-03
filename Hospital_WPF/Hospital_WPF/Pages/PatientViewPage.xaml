@@ -1,0 +1,97 @@
+﻿<Page x:Class="Hospital_WPF.Pages.PatientViewPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Hospital_WPF.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1000"
+      Title="PatientViewPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.8*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="0.5*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Style="{StaticResource StackPanelStyle}">
+            <TextBlock Text="Окно просмотра личных данных пациента"
+                       FontSize="26"
+                       Margin="5,25,5,5"
+                       TextAlignment="Center"
+                       Width="550"
+                       Height="40"
+                       Style="{StaticResource TextBlockStyle}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Style="{StaticResource StackPanelStyle}">
+            <ComboBox Name="CmbSelectPatientMedRec"
+                      IsEditable="True" IsReadOnly="True"
+                      Width="300" Margin="5,85,5,5"
+                      Height="35"
+                      FontSize="20"
+                      Text="Выберите пациента: "
+                      Style="{StaticResource CmbStyle}"
+                      SelectionChanged="CmbSelectPatientMedRec_SelectionChanged"/>
+            <TextBlock Text="ФИО пациента" Name="FIOPatientTxtBlock"
+                       Margin="5,5,5,5"
+                       Width="250"
+                       Height="30"
+                       TextAlignment="Left"
+                       FontSize="20"
+                       Style="{StaticResource TextBlockStyle}"/>
+            <TextBlock Text="Возраст пациента" Name="AgePatientTxtBlock"
+                       Margin="5,5,5,5"
+                       Width="250"
+                       Height="30"
+                       TextAlignment="Left"
+                       FontSize="20"
+                       Style="{StaticResource TextBlockStyle}"/>
+            <TextBlock Text="Дата рождения пациента" Name="BirthDatePatientTxtBlock"
+                       Margin="5,5,5,5"
+                       Width="250" Height="30"
+                       TextAlignment="Left"
+                       FontSize="20"
+                       Style="{StaticResource TextBlockStyle}"/>
+            <TextBlock Text="Номер полиса ОМС пациента" Name="InsuranceNumberPatientTxtBlock"
+                       Margin="5,5,5,5"
+                       Width="250"
+                       Height="30"
+                       TextAlignment="Left"
+                       FontSize="20"
+                       Style="{StaticResource TextBlockStyle}"/>
+            <TextBlock Text="Адрес пациента" Name="AddressPatientTxtBlock"
+                     Margin="5,5,5,5"
+                     Width="250" Height="30"
+                     TextAlignment="Left"
+                     FontSize="20"
+                     Style="{StaticResource TextBlockStyle}"/>
+            <Image Margin="-670,-255,5,5"
+                   Width="250"
+                   Height="250"
+                   Stretch="Uniform">
+                <Image.Source>\Resources\Hospital_Snake.png</Image.Source>
+            </Image>
+            <Image Margin="650,-255,5,5"
+                   Width="250"
+                   Height="250"
+                   Stretch="Uniform">
+                <Image.Source>\Resources\DoctorImage_Auth.jpg</Image.Source>
+            </Image>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2"
+                    Style="{StaticResource StackPanelStyle}"
+                    Orientation="Horizontal">
+            <Button Content="Вернуться назад" Name="GoBackBtn"
+                    Click="GoBackBtn_Click"
+                    Width="175"
+                    Height="30"
+                    FontSize="20"
+                    Margin="400,5,5,5"
+                    Style="{StaticResource BtnStyle}"/>
+        </StackPanel>
+        
+    </Grid>
+</Page>
