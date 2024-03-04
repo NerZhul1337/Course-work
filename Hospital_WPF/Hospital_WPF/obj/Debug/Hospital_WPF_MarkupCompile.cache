@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Jodah\Documents\GitHub\Hospital_WPF\Hospital_WPF\obj\Debug\
+C:\Users\Jodah\Documents\GitHub\Course-work\Hospital_WPF\Hospital_WPF\obj\Debug\
 Hospital_WPF
 none
 false
 DEBUG;TRACE
-C:\Users\Jodah\Documents\GitHub\Hospital_WPF\Hospital_WPF\App.xaml
+C:\Users\Jodah\Documents\GitHub\Course-work\Hospital_WPF\Hospital_WPF\App.xaml
 10314223507
 2-1625750381
-251715889857
-24-461688806
+26-366198761
+24220186297
 MainWindow.xaml;Pages\AddEmployeePage.xaml;Pages\AddReceptionPage.xaml;Pages\AuthorizationPage.xaml;Pages\EditEmployeePage.xaml;Pages\EditReceptionPage.xaml;Pages\MainViewPage.xaml;Pages\PatientViewPage.xaml;Pages\StatsPage.xaml;Pages\ViewEmployeePage.xaml;
 
-False
+True
 

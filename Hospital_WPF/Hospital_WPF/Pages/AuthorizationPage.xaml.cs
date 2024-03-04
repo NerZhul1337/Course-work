@@ -39,7 +39,7 @@ namespace Hospital_WPF.Pages
 
             if (Login != "" && Password != "")
             {
-                var Level = DBHospitalEntities.GetContext().Doctors_Table.FirstOrDefault(x => x.User_login.Contains(TxtBoxLogAuth.Text) && x.User_pass.Contains(PassBoxPassAuth.Password));
+                var Level = DBHospitalEntities.GetContext().Doctors_Table.FirstOrDefault(x => x.User_login == TxtBoxLogAuth.Text && x.User_pass == PassBoxPassAuth.Password);
                 if (Level != null)
                 {
                     if (Level.Access_Level_Table.id_access_level == 1)
