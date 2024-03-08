@@ -15,7 +15,6 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-
         <StackPanel Grid.Row="0"
                     Style="{StaticResource StackPanelStyle}">
             <TextBlock Grid.Row="0" Text="Окно добавления сотрудника"

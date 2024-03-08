@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace Hospital_WPF.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для AddReceptionPage.xaml
-    /// </summary>
     public partial class AddReceptionPage : Page
     {
         public AddReceptionPage()

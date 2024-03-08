@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace Hospital_WPF.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для StatsPage.xaml
-    /// </summary>
     public partial class StatsPage : Page
     {
         public StatsPage()

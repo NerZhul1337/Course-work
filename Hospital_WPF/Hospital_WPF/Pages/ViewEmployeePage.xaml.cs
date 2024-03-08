@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace Hospital_WPF.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для ViewEmployeePage.xaml
-    /// </summary>
     public partial class ViewEmployeePage : Page
     {
         public ViewEmployeePage()
@@ -39,7 +36,7 @@ namespace Hospital_WPF.Pages
                 LstViewEmployee.SelectedItems.Cast<Doctors_Table>().ToList();
 
             if(MessageBox.Show
-                ($"Удалить {EmployeeForRemoving.Count} записей о врачах?", "Внимание",
+                ($"Удалить {EmployeeForRemoving.Count} записей о сотрудниках?", "Внимание",
                 MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 try
                 {

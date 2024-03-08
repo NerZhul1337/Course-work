@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace Hospital_WPF.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для AuthorizationPage.xaml
-    /// </summary>
     public partial class AuthorizationPage : Page
     {
         public AuthorizationPage()

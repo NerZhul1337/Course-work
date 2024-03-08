@@ -18,9 +18,6 @@ using System.Windows.Shapes;
 
 namespace Hospital_WPF.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для EditEmployeePage.xaml
-    /// </summary>
     public partial class EditEmployeePage : Page
     {
         private Doctors_Table _doctortable = new Doctors_Table();

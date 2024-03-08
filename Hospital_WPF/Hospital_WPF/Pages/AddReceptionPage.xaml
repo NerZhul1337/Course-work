@@ -68,7 +68,7 @@
                      Height="30"
                      Margin="485,-35,5,5"
                     Style="{StaticResource TextBoxStyle}"/>
-            
+
             <ComboBox Name="CmbAddDiagnoseToReception"
                       Text="Выберите диагноз: "
                       IsEditable="True" IsReadOnly="True"
@@ -76,7 +76,7 @@
                       Height="35"
                       FontSize="20"
                       Style="{StaticResource CmbStyle}"/>
-            
+
             <Image Margin="-670,-205,5,5"
                    Width="250"
                    Height="250"

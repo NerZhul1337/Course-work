@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace Hospital_WPF.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для PatientViewPage.xaml
-    /// </summary>
     public partial class PatientViewPage : Page
     {
         private Patients_Medical_Records_Table _records = new Patients_Medical_Records_Table();

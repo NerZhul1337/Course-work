@@ -22,9 +22,6 @@ using System.Xml.Linq;
 
 namespace Hospital_WPF.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для AddEmployeePage.xaml
-    /// </summary>
     public partial class AddEmployeePage : Page
     {
 
@@ -207,6 +204,7 @@ namespace Hospital_WPF.Pages
             if (ofd.ShowDialog() == true)
             {
                 image_bytes = File.ReadAllBytes(ofd.FileName);
+                MessageBox.Show(ofd.FileName.ToString());
 
                 if (image_bytes.Length > MaxValue)
                 {
