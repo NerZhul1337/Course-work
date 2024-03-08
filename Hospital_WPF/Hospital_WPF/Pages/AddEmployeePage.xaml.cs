@@ -207,16 +207,21 @@ namespace Hospital_WPF.Pages
             if (ofd.ShowDialog() == true)
             {
                 image_bytes = File.ReadAllBytes(ofd.FileName);
-                var bi = new BitmapImage();
-                bi.BeginInit();
-                bi.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
-                bi.CacheOption = BitmapCacheOption.OnLoad;
-                bi.UriSource = new Uri(ofd.FileName);
-                bi.EndInit();
-                ImageEmployeeElement.Source = bi;
+
                 if (image_bytes.Length > MaxValue)
                 {
                     MessageBox.Show("Размер изображения превышает 5 МБ", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    
+                    var bi = new BitmapImage();
+                    bi.BeginInit();
+                    bi.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
+                    bi.CacheOption = BitmapCacheOption.OnLoad;
+                    bi.UriSource = new Uri(ofd.FileName);
+                    bi.EndInit();
+                    ImageEmployeeElement.Source = bi;
                 }
             }
             else

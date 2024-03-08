@@ -25,8 +25,6 @@ namespace Hospital_WPF.Pages
     {
         private Doctors_Table _doctortable = new Doctors_Table();
 
-        public byte[] img_bytes;
-
         public byte[] image_bytes;
         public int MaxValue = 5242880;
         public int MinValue = 0;
@@ -63,8 +61,6 @@ namespace Hospital_WPF.Pages
             TxtBoxChangedLoginEmp.ToolTip = "Введите свой адрес электронной почты";
             PassBoxChangedPasswordEmpFirstCheck.PasswordChar = '*';
             PassBoxChangedPasswordEmpSecondCheck.PasswordChar = '*';
-
-            //image_bytes = SelectedDoctor.EmployeeImage;
         }
 
         private void SaveChangesInDoctorsTableBtn_Click(object sender, RoutedEventArgs e)

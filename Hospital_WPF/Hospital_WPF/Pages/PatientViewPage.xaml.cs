@@ -35,8 +35,6 @@ namespace Hospital_WPF.Pages
             CmbSelectPatientMedRec.ItemsSource = allpatients;
             CmbSelectPatientMedRec.SelectedValuePath = "id_medical_records";
             CmbSelectPatientMedRec.DisplayMemberPath = "Surname_patient";
-
-
         }
 
         private void CmbSelectPatientMedRec_SelectionChanged(object sender, SelectionChangedEventArgs e)
