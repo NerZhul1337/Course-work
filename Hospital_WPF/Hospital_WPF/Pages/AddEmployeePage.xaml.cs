@@ -204,7 +204,6 @@ namespace Hospital_WPF.Pages
             if (ofd.ShowDialog() == true)
             {
                 image_bytes = File.ReadAllBytes(ofd.FileName);
-                MessageBox.Show(ofd.FileName.ToString());
 
                 if (image_bytes.Length > MaxValue)
                 {

@@ -55,6 +55,7 @@
                        Style="{StaticResource TextBlockStyle}"/>
             <TextBox Name="TxtBoxAddAdditionsToDiagnoseToReception"
                      Width="350"
+                     FontSize="20"
                      Height="30"
                      Margin="485,-35,5,5"
                     Style="{StaticResource TextBoxStyle}"/>
@@ -65,6 +66,7 @@
                        Style="{StaticResource TextBlockStyle}"/>
             <TextBox Name="TxtBoxAddAppointmentToReception"
                      Width="350"
+                     FontSize="20"
                      Height="30"
                      Margin="485,-35,5,5"
                     Style="{StaticResource TextBoxStyle}"/>
